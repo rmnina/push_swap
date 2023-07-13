@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:05 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/13 19:46:57 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/14 00:47:13 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,21 @@ void    ft_push_swap(t_node *head)
 	indexing(head);
 }
 
-void print_list(t_node *head, void (*print_func)(int)) {
+void print_list(t_node *head, void (*print_func)(int)) 
+{
     t_node *current = head;
 
     while (current != NULL) {
         print_func(current->index);
         current = current->next;
     }
-    printf("\n");
+    ft_printf("\n");
 }
 
-void print_int(int content) {
+void print_int(int content) 
+{
     int value = content;
-    printf("%d ", value);
+    ft_printf("%d ", value);
 }
 
 int main(int argc, char **argv)
@@ -38,22 +40,17 @@ int main(int argc, char **argv)
 	t_node	*head;
 
 	if (argc < 2)
-	{
-		ft_putstr("Error argc\n");
-		return (0);
-	}
+		ft_error();
 	i = 1;
 	head = NULL;
 	while (i < argc)
 	{
-		if (!basic_checks(argv[i]))
-			return (0);
+		basic_checks(argv[i]);
 		head = init_stack_a(argv[i], head);
 		i++;
 	}
-	if (!doubles_check(head))
-			return (0);
+	doubles_check(head);
 	ft_push_swap(head);
 	print_list(head, print_int);
-	
+	return (0);
 }
