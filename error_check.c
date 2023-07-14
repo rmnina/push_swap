@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:50:45 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/14 00:46:04 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/14 04:29:24 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void basic_checks(char *str)
 
 	i = 0;
 	value = 0;
-	if (str == NULL || str[i] == '\n' 
-		|| str[0] == '\0' || ft_strlen(str) > 11)
+	if (str == NULL || str[0] == '\0' || ft_strlen(str) > 11)
 		ft_error();
 	while (str[i])
 	{
@@ -41,12 +40,12 @@ void basic_checks(char *str)
 		ft_error();
 }
 
-void	doubles_check(t_node *head)
+void	doubles_check(stack *head_a)
 {
-	t_node	*i;
-	t_node	*j;
+	stack	*i;
+	stack	*j;
 	
-	i = head;
+	i = head_a;
 	j = NULL;
 	while (i != NULL)
 	{

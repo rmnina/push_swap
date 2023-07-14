@@ -6,26 +6,13 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:58:31 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/13 22:56:56 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/14 04:33:38 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int    ft_nodesize(t_node *lst)
-{
-    int i;
-
-    i = 0;
-    while (lst)
-    {
-        i++;
-        lst = lst->next;
-    }
-    return (i);
-}
-
-void	search_min(t_node **i, t_node **j, int *min, int k)
+void	search_min(stack **i, stack **j, int *min, int k)
 {
 	(*j) = (*i)->next;
 	while ((*j) != NULL)
@@ -40,7 +27,7 @@ void	search_min(t_node **i, t_node **j, int *min, int k)
 	*min = (*i)->content;
 }
 
-void	move_iterator(t_node **i, int k, int *min)
+void	move_iterator(stack **i, int k, int *min)
 {
 	(*i)->index = k;
 	if ((*i)->next != NULL)
@@ -48,7 +35,7 @@ void	move_iterator(t_node **i, int k, int *min)
 	set_new_min(i, min);
 }
 
-void set_new_min(t_node **i, int *min)
+void set_new_min(stack **i, int *min)
 {
 	while ((*i))
 	{
@@ -61,23 +48,23 @@ void set_new_min(t_node **i, int *min)
 	}
 }
 
-void	indexing(t_node *head)
+void	indexing(stack *head_a)
 {
-	t_node		*i;
-	t_node		*j;
+	stack		*i;
+	stack		*j;
 	int			min;
 	int			k;
 
-	i = head;
+	i = head_a;
 	j = NULL;
-	min = head->content;
+	min = head_a->content;
 	k = 1;
-	while (k <= ft_nodesize(head))
+	while (k <= ft_stacksize(head_a))
 	{
 		j = i->next;
 		while (j)
 		{
-			if (j->content < min && j->index == 0)
+			if (j->content < min && !(j->index))
 				min = j->content;
 			j = j->next;
 		}

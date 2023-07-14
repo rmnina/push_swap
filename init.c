@@ -6,54 +6,22 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:50:54 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/13 18:56:28 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/14 04:44:01 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node  *ft_lstnew_node(int content, int index)
+stack  *init_stack_a(char *arg, stack *head_a)
 {
-	t_node  *new;
-	
-	index = 0;
-	new = (t_node*)malloc(sizeof(*new));
-	if (!new)
-    	return (NULL);
-	new->content = content;
-	new->index = index;
-	new->next = NULL;
-	return (new);
-}
-
-t_node  *ft_lstlast_node(t_node *lst)
-{
-    if (!lst)
-        return (NULL);
-    while (lst->next)
-        lst = lst->next;
-    return (lst);
-}
-
-t_node  *init_stack_a(char *arg, t_node *head)
-{
-	t_node  *new;
-	t_node	*current;
+	stack  *new;
 	int		value;
 
-	current = NULL;
 	value = atoi(arg);
-	new = ft_lstnew_node(value, 0);
-	if (head == NULL)
-	{
-		head = new;
-		current = head;
-	}
+	new = ft_lstnew_node(value);
+	if (head_a == NULL)
+		head_a = new;
 	else
-	{
-		current = ft_lstlast_node(head);
-		current->next = new;
-		current = new;
-	}
-	return (head);
-} 
+		ft_stackadd_front(&head_a, new);
+	return (head_a);
+}

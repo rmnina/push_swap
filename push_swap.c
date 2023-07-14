@@ -6,23 +6,23 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:05 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/14 00:47:13 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/14 05:46:23 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    ft_push_swap(t_node *head)
+void    ft_push_swap(stack *head_a)
 {
-	indexing(head);
+	indexing(head_a);
 }
 
-void print_list(t_node *head, void (*print_func)(int)) 
+void print_list(stack *head_a, void (*print_func)(int)) 
 {
-    t_node *current = head;
+    stack *current = head_a;
 
     while (current != NULL) {
-        print_func(current->index);
+        print_func(current->content);
         current = current->next;
     }
     ft_printf("\n");
@@ -37,20 +37,20 @@ void print_int(int content)
 int main(int argc, char **argv)
 {
 	int i;
-	t_node	*head;
+	stack	*head_a;
 
 	if (argc < 2)
 		ft_error();
 	i = 1;
-	head = NULL;
+	head_a = NULL;
 	while (i < argc)
 	{
 		basic_checks(argv[i]);
-		head = init_stack_a(argv[i], head);
+		head_a = init_stack_a(argv[i], head_a);
 		i++;
 	}
-	doubles_check(head);
-	ft_push_swap(head);
-	print_list(head, print_int);
+	doubles_check(head_a);
+	ft_rotate(&head_a, RA);
+	print_list(head_a, print_int);
 	return (0);
 }
