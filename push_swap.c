@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:05 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/14 05:46:23 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/15 15:49:12 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 		i++;
 	}
 	doubles_check(head_a);
-	ft_rotate(&head_a, RA);
+	tri_test(&head_a);
 	print_list(head_a, print_int);
 	return (0);
 }

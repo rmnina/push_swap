@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:51:30 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/14 05:45:34 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/15 15:53:43 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,6 @@ void	write_move(int move)
 		ft_putstr("rrr\n");
 }
 
-void	ft_swap(stack **head, int move)
-{
-	stack	*temp;
-
-	temp = (*head);
-	(*head) = (*head)->next;
-	temp->next = (*head)->next;
-	(*head)->next = temp;
-	write_move(move);
-}
-
 void	ft_push(stack **head_push, stack **head_rec, int move)
 {
 	stack	*temp;
@@ -60,14 +49,68 @@ void	ft_push(stack **head_push, stack **head_rec, int move)
 	write_move(move);
 }
 
-void	ft_rotate(stack **head, int move)
+void	ft_swap(stack **head, int move)
 {
 	stack	*temp;
-	stack	*last;
-	
+
 	temp = (*head);
-	last = ft_stacklast(&head);
-	(*head) = last;
-	last->next = temp;
+	(*head) = (*head)->next;
+	temp->next = (*head)->next;
+	(*head)->next = temp;
 	write_move(move);
 }
+
+void	ft_rotate(stack **head, int move)
+{
+	stack	*last;
+	stack	*temp;
+	
+	if (*head == NULL || (*head)->next == NULL)
+        return;
+	last = ft_stacklast((*head));
+	temp = (*head);
+	last->next = temp;
+    *head = temp->next;
+    temp->next = NULL;
+	write_move(move);
+}
+
+void	ft_reverse_rotate(stack **head, int move)
+{
+	stack	*last;
+	stack	*second_to_last;
+	
+	last = (*head);
+	second_to_last = NULL;
+	if (*head == NULL || (*head)->next == NULL)
+        return;
+	while (last->next != NULL)
+    {
+        second_to_last = last;
+        last = last->next;
+    }
+	last->next = *head;
+    *head = last;
+    second_to_last->next = NULL;
+	write_move(move);
+}
+
+// void	tri_test(stack **head)
+// {
+// 	stack	*i;
+// 	stack	*j;
+
+// 	i = (*head);
+// 	j = NULL;
+// 	while (i)
+// 	{
+// 		j = i->next;
+// 		while (j)
+// 		{
+// 			if (j->index < i->index)
+// 				ft_swap(head, SA);
+// 			j = j->next;
+// 		}
+// 		i = i->next;	
+// 	}
+// }

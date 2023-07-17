@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:37 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/14 05:45:46 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/15 15:49:36 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	write_move(int move);
 void	ft_swap(stack **head, int move);
 void	ft_push(stack **head_push, stack **head_rec, int move);
 void	ft_rotate(stack **head, int move);
-
+void	ft_reverse_rotate(stack **head, int move);
+void	tri_test(stack **head);
 
 //ALGORITHMS
 
