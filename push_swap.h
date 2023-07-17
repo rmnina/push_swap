@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:37 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/15 15:49:36 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/18 01:09:23 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,18 @@ typedef struct s_node
 
 //ERROR CHECKS
 
-void	doubles_check(stack *head_a);
+void	doubles_check(char **argv);
 void	basic_checks(char *str);
 void	ft_error();
 
 //CREATE STACKS
 
-stack	*init_stack_a(char *value, stack *head_a);
-
+stack	*init_stack_a(char *arg, stack *head_a);
+int		is_sorted(stack *head_b);
 
 //INDEX STACK A
 
-void	indexing(stack *head_a);
+void	init_sorting_indexes(stack *head_a);
 void	search_min(stack **i, stack **j, int *min, int k);
 void	move_iterator(stack **i, int k, int *min);
 void	set_new_min(stack **i, int *min);
@@ -68,31 +68,30 @@ void	set_new_min(stack **i, int *min);
 
 void	write_move(int move);
 void	ft_swap(stack **head, int move);
-void	ft_push(stack **head_push, stack **head_rec, int move);
+stack	*ft_push(stack **head_push, stack **head_rec, int move);
 void	ft_rotate(stack **head, int move);
 void	ft_reverse_rotate(stack **head, int move);
-void	tri_test(stack **head);
 
 //ALGORITHMS
 
 	//SMALL ALGORITHMS
-
+void    three_values_algo(stack **head_a);
 	
 	//BIG ALGORITHMS
 
-	
+void    main_algorithm(stack **head_a, stack **head_b);	
 	//OPTI : BEST MOVES CHECKS
 
 
 //UTILS
 int		ft_stacksize(stack *head);
-stack  *ft_lstnew_node(int content);
+stack  *ft_lstnew_node(int content, int index, int chunk);
 void    ft_stackadd_front(stack **head, stack *new);
 stack  *ft_stacklast(stack *last);
 void	ft_stackdelone(stack *lst);
+void    ft_stackclear(stack **lst);
 
 
-
-void    ft_push_swap(stack *head_a);
+void    ft_push_swap(stack **head_a, stack **head_b, int argc);
 
 #endif

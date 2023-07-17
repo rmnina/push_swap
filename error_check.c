@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:50:45 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/14 04:29:24 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/17 18:40:14 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,22 @@ void basic_checks(char *str)
 		ft_error();
 }
 
-void	doubles_check(stack *head_a)
+void	doubles_check(char **argv)
 {
-	stack	*i;
-	stack	*j;
-	
-	i = head_a;
-	j = NULL;
-	while (i != NULL)
+	int	i;
+	int	j;
+
+	i = 1;
+	j = 1;
+	while (argv[i])
 	{
-		j = i->next;
-		while (j != NULL)
+		j = i + 1;
+		while (argv[j])
 		{
-			if (i->content == j->content)
+			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
 				ft_error();
-			j = j->next;
+			j++;
 		}
-		i = i->next;
+		i++;
 	}
 }

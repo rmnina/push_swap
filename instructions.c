@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:51:30 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/15 15:53:43 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/18 00:57:17 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	write_move(int move)
 		ft_putstr("rrr\n");
 }
 
-void	ft_push(stack **head_push, stack **head_rec, int move)
+stack	*ft_push(stack **head_push, stack **head_rec, int move)
 {
 	stack	*temp;
 
@@ -47,12 +47,15 @@ void	ft_push(stack **head_push, stack **head_rec, int move)
 	temp->next = (*head_rec);
 	(*head_rec) = temp;
 	write_move(move);
+	return ((*head_rec));
 }
 
 void	ft_swap(stack **head, int move)
 {
 	stack	*temp;
-
+	
+	if (!(*head) || !((*head)->next))
+		return;
 	temp = (*head);
 	(*head) = (*head)->next;
 	temp->next = (*head)->next;

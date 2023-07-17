@@ -6,15 +6,28 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:05 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/15 15:49:12 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/18 01:10:28 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    ft_push_swap(stack *head_a)
+void    ft_push_swap(stack **head_a, stack **head_b, int argc)
 {
-	indexing(head_a);
+	int i = 0;
+	
+	(void) argc;
+	init_sorting_indexes(*head_a);
+	if (argc == 4)
+		three_values_algo(head_a);
+	else
+	{
+		while (i < 6)
+		{
+			main_algorithm(head_a, head_b);
+			i++;
+		}
+	}
 }
 
 void print_list(stack *head_a, void (*print_func)(int)) 
@@ -22,7 +35,7 @@ void print_list(stack *head_a, void (*print_func)(int))
     stack *current = head_a;
 
     while (current != NULL) {
-        print_func(current->content);
+        print_func(current->chunk);
         current = current->next;
     }
     ft_printf("\n");
@@ -38,19 +51,22 @@ int main(int argc, char **argv)
 {
 	int i;
 	stack	*head_a;
-
+	stack	*head_b;
+	
 	if (argc < 2)
 		ft_error();
 	i = 1;
 	head_a = NULL;
+	head_b = NULL;
+	doubles_check(argv);
 	while (i < argc)
 	{
 		basic_checks(argv[i]);
 		head_a = init_stack_a(argv[i], head_a);
 		i++;
 	}
-	doubles_check(head_a);
-	tri_test(&head_a);
-	print_list(head_a, print_int);
+	ft_push_swap(&head_a, &head_b, argc);
+	print_list(head_b, print_int);
+	ft_stackclear(&head_a);
 	return (0);
 }

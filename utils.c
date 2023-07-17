@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 04:31:26 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/14 05:19:05 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/17 21:45:10 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ stack  *ft_stacklast(stack *last)
     return (last);
 }
 
-stack  *ft_lstnew_node(int content)
+stack  *ft_lstnew_node(int content, int index, int chunk)
 {
 	stack  *new;
 
@@ -29,6 +29,8 @@ stack  *ft_lstnew_node(int content)
 	if (!new)
     	return (NULL);
 	new->content = content;
+    new->index = index;
+    new->chunk = chunk;
 	new->next = NULL;
 	return (new);
 }
@@ -60,4 +62,20 @@ void    ft_stackdelone(stack *lst)
         return ;
     lst->next = NULL;
     free(lst);
+}
+
+void    ft_stackclear(stack **lst)
+{
+    stack  *pos;
+    
+    pos = *lst;
+    if (!lst)
+        return ;
+    while (pos)
+    {
+        pos = (*lst)->next;
+        ft_stackdelone(*lst);
+        *lst = pos;
+    }
+    *lst = NULL;
 }

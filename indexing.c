@@ -6,11 +6,20 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:58:31 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/14 04:33:38 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/17 19:45:31 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	set_chunk(stack **i, int k)
+{
+	static int	chunk = 1;
+	
+	(*i)->chunk = chunk;
+	if (k >= 3 && k % 3 == 0)
+		chunk++;
+}
 
 void	search_min(stack **i, stack **j, int *min, int k)
 {
@@ -20,7 +29,8 @@ void	search_min(stack **i, stack **j, int *min, int k)
 		if ((*j)->content == *min)
 		{
 			(*j)->index = k;
-				break;
+			set_chunk(j, k);
+			break;
 		}
 		(*j) = (*j)->next;
 	}
@@ -30,6 +40,7 @@ void	search_min(stack **i, stack **j, int *min, int k)
 void	move_iterator(stack **i, int k, int *min)
 {
 	(*i)->index = k;
+	set_chunk(i, k);
 	if ((*i)->next != NULL)
 		(*i) = (*i)->next;
 	set_new_min(i, min);
@@ -48,7 +59,7 @@ void set_new_min(stack **i, int *min)
 	}
 }
 
-void	indexing(stack *head_a)
+void	init_sorting_indexes(stack *head_a)
 {
 	stack		*i;
 	stack		*j;
