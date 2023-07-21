@@ -6,7 +6,7 @@
 #    By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/31 12:01:53 by jdufour           #+#    #+#              #
-#    Updated: 2023/07/12 20:12:04 by jdufour          ###   ########.fr        #
+#    Updated: 2023/07/21 19:37:28 by jdufour          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ ft_strtrim.c\
 ft_printf.c\
 ft_format.c\
 
-SRC_BONUS = ft_lstadd_front.c\
+SRCS_BONUS = ft_lstadd_front.c\
 	    ft_lstadd_back.c\
 	    ft_lstclear.c\
 	    ft_lstdelone.c\
@@ -61,7 +61,7 @@ SRC_BONUS = ft_lstadd_front.c\
 
 OBJS = ${SRCS:.c=.o}
 
-OBJS_BONUS = ${SRC_BONUS:.c=.o}
+OBJS_BONUS = ${SRCS_BONUS:.c=.o}
 
 HEADER = libft.h
 

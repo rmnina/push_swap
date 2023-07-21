@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:50:54 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/18 00:15:40 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/21 19:44:35 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 stack  *init_stack_a(char *arg, stack *head_a)
 {
-	stack  *new;
-	int		value;
+	stack  		*new;
+	int			value;
 
 	value = atoi(arg);
 	new = ft_lstnew_node(value, 0, 0);

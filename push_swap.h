@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:37 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/18 01:09:23 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/21 19:44:58 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,20 @@ void	ft_reverse_rotate(stack **head, int move);
 
 	//SMALL ALGORITHMS
 void    three_values_algo(stack **head_a);
+void    minmax_val(stack **head_a, stack **head_b);
+void    five_values_algo(stack **head_a, stack **head_b);
 	
 	//BIG ALGORITHMS
+void    sort_chunks(stack **head_a, stack **head_b);
+void    sort_index(stack **head_a, stack **head_b);
+void    main_algorithm(stack **head_a, stack **head_b);
+void    incomplete_chunks(stack **head_a, stack **head_b);
+void    case_321(stack **head_a, stack **head_b);
+void    case_213(stack **head_a, stack **head_b);
+void    case_312(stack **head_a, stack **head_b);
 
-void    main_algorithm(stack **head_a, stack **head_b);	
 	//OPTI : BEST MOVES CHECKS
+
 
 
 //UTILS

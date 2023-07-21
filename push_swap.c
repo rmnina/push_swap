@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:05 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/18 01:10:28 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/21 19:44:46 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,44 @@
 
 void    ft_push_swap(stack **head_a, stack **head_b, int argc)
 {
-	int i = 0;
-	
 	(void) argc;
 	init_sorting_indexes(*head_a);
 	if (argc == 4)
 		three_values_algo(head_a);
+	if (argc == 6)
+		five_values_algo(head_a, head_b);
 	else
-	{
-		while (i < 6)
-		{
-			main_algorithm(head_a, head_b);
-			i++;
-		}
-	}
+		main_algorithm(head_a, head_b);
 }
 
-void print_list(stack *head_a, void (*print_func)(int)) 
+void print_list_content(stack *head_a, void (*print_func)(int)) 
+{
+    stack *current = head_a;
+
+    while (current != NULL) {
+        print_func(current->content);
+        current = current->next;
+    }
+    ft_printf("\n");
+}
+
+void print_list_chunk(stack *head_a, void (*print_func)(int)) 
 {
     stack *current = head_a;
 
     while (current != NULL) {
         print_func(current->chunk);
+        current = current->next;
+    }
+    ft_printf("\n");
+}
+
+void print_list_index(stack *head_a, void (*print_func)(int)) 
+{
+    stack *current = head_a;
+
+    while (current != NULL) {
+        print_func(current->index);
         current = current->next;
     }
     ft_printf("\n");
@@ -66,7 +82,8 @@ int main(int argc, char **argv)
 		i++;
 	}
 	ft_push_swap(&head_a, &head_b, argc);
-	print_list(head_b, print_int);
+	ft_printf("content =\n");
+	print_list_content(head_a, print_int);
 	ft_stackclear(&head_a);
 	return (0);
 }
