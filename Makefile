@@ -6,7 +6,7 @@
 #    By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/31 12:01:53 by jdufour           #+#    #+#              #
-#    Updated: 2023/07/21 20:02:48 by jdufour          ###   ########.fr        #
+#    Updated: 2023/07/24 18:13:08 by jdufour          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS = error_check.c\
 	push_swap.c\
 	small_algorithms.c\
 	utils.c\
+	calc_best_moves.c\
 
 OBJS = ${SRCS:.c=.o}
 

@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:56:47 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/21 19:44:50 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/24 17:51:35 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ void    minmax_val(stack **head_a, stack **head_b)
 {
     if ((*head_b)->content < (*head_a)->content)
     {
-        ft_push(head_b, head_a, PB);
-        ft_push(head_b, head_a, PB);
+        ft_push(head_b, head_a, PA);
+        ft_push(head_b, head_a, PA);
         ft_rotate(head_a, RA);
     }
     else
     {
-        ft_push(head_b, head_a, PB);
+        ft_push(head_b, head_a, PA);
         ft_rotate(head_a, RA);  
-        ft_push(head_b, head_a, PB);      
+        ft_push(head_b, head_a, PA);      
     }
 }
 
@@ -75,7 +75,7 @@ void    five_values_algo(stack **head_a, stack **head_b)
         else if (pos >= 3)
             while ((*head_a)->index != i->index)
                 ft_reverse_rotate(head_a, RRA);
-        ft_push(head_a, head_b, PA);
+        ft_push(head_a, head_b, PB);
     }
     three_values_algo(head_a);
     minmax_val(head_a, head_b);

@@ -6,102 +6,11 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 18:41:34 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/24 15:43:27 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/24 18:52:20 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void    sort_same_chunks(stack **head_a, stack **head_b, int *chunk_ref, int *count)
-{
-        ft_push(head_a, head_b, PA);
-        *count += 1;
-        if (*count == 3)
-        {
-            *chunk_ref+=1;
-            *count = 0;
-        }
-}
-
-void    sort_opposite_chunk(stack **head_a, stack **head_b, int *opposite_chunk_ref, int *count2)
-{
-            ft_push(head_a, head_b, PA);
-            ft_rotate(head_b, RB);
-            *count2 += 1;
-            if (*count2 == 3)
-            {
-                *opposite_chunk_ref-=1;
-                *count2 = 0;
-            }
-}
-
-void    sort_chunks(stack **head_a, stack **head_b)
-{
-    int     chunk_ref;
-    int     count;
-    int     pos;
-    stack   *i;
-    
-    chunk_ref = 1;
-    count = 0;
-    while (*head_a)
-    {
-        if ((*head_a)->chunk != chunk_ref)
-        {
-            i = (*head_a);
-            pos = 0;
-            while (i && i->chunk != chunk_ref)
-            {
-                i = i->next;
-                pos++;
-            }
-            while ((*head_a)->chunk != chunk_ref)
-                best_moves_check(head_a, pos);
-        }
-        if ((*head_a)->chunk == chunk_ref)
-        {
-            ft_push(head_a, head_b, PA);
-            count++;
-            if (count % 3 == 0)
-                chunk_ref++;
-        }
-    }
-}
-
-// void    sort_chunks(stack **head_a, stack **head_b)
-// {
-//     int     chunk_ref;
-//     int     opposite_chunk_ref;
-//     int     count = 0;
-//     int     count2 = 0;
-//     int     pos;
-//     stack   *i;
-    
-//     chunk_ref = 1;
-//     opposite_chunk_ref = ft_stacksize(*head_a) / 3;
-//     if ((ft_stacksize(*head_a)) % 3 != 0)
-//         opposite_chunk_ref +=1;
-//     while (*head_a)
-//     {
-//         if ((*head_a)->chunk != opposite_chunk_ref || (*head_a)->chunk != chunk_ref)
-//         {
-//             i = (*head_a);
-//             pos = 0;
-//             while (i && i->chunk != opposite_chunk_ref && (*head_a)->chunk != chunk_ref)
-//             {
-//                 i = i->next;
-//                 pos++;
-//             }
-//             while ((*head_a)->chunk != opposite_chunk_ref && (*head_a)->chunk != chunk_ref)
-//                 best_moves_check(head_a, pos);
-//         }
-//         if ((*head_a)->chunk == opposite_chunk_ref)
-//             sort_opposite_chunk(head_a, head_b, &opposite_chunk_ref, &count2);
-//         if ((*head_a)->chunk == chunk_ref)
-//             sort_same_chunks(head_a, head_b, &chunk_ref, &count);
-//     }
-//     reorder_stack_b(head_b); 
-// }
 
 void    sort_index(stack **head_a, stack **head_b)
 {
@@ -134,6 +43,55 @@ void    sort_index(stack **head_a, stack **head_b)
     }
 }
 
+int first_half(stack *head, stack *pos)
+{
+    stack   *i;
+    int     count;
+
+    i = head;
+    count = 0;
+    while (i && i != pos)
+    {
+        i = i->next;
+        count++;
+    }
+    if (count <= ft_stacksize(head) / 2)
+        return (1);
+    return (0);
+}
+
+void    push_node(stack **head_a, stack **head_b)
+{
+    int     moves_a;
+    int     moves_b;
+    stack   *i;
+    stack   *src;
+    stack   *dest;
+    
+    i = (*head_a);
+    src = (*head_a);
+    dest = (*head_b);
+    moves_a = calc_best_move_a(i, (*head_b));
+    moves_b = calc_best_move_b(i, (*head_a));
+    while (i)
+    {
+        i = i->next;
+        if (calc_best_move_a(i, (*head_a)) + calc_best_move_b(i, (*head_b)) < moves_a + moves_b)
+        {
+            moves_a = calc_best_move_a(i, (*head_a));
+            moves_b = calc_best_move_b(i, (*head_b));
+            src = i;
+        }
+    }
+    while (dest->next && !close_chunks(src, dest))
+        dest = dest->next;
+    if (first_half((*head_a), dest))
+        first_half_a_moves(head_a, head_b, &src, &dest);
+    else 
+        last_half_a_moves(head_a, head_b, &src, &dest);
+    ft_push(head_a, head_b, PB);
+}
+
 void    send_chunks_back(stack **head_a, stack **head_b)
 {
     int     count;
@@ -152,75 +110,31 @@ void    send_chunks_back(stack **head_a, stack **head_b)
     {
         if ((*head_b)->index > i->index)
         {
-            ft_push(head_b, head_a, PB);
-            ft_push(head_b, head_a, PB);
+            ft_push(head_b, head_a, PA);
+            ft_push(head_b, head_a, PA);
         }
         else
         {
             ft_swap(head_b, SB);
-            ft_push(head_b, head_a, PB);
-            ft_push(head_b, head_a, PB);
+            ft_push(head_b, head_a, PA);
+            ft_push(head_b, head_a, PA);
         }
     }
     else
-        ft_push(head_b, head_a, PB);
+        ft_push(head_b, head_a, PA);
 }
-
 
 void    main_algorithm(stack **head_a, stack **head_b)
 {
-    sort_chunks(head_a, head_b);
-    while ((*head_b))
+    if (!(*head_b))
+        ft_push(head_a, head_b, PB);
+    while (*head_a)
     {
-        send_chunks_back(head_a, head_b);
+        ft_printf("list content \n");
+        print_list_content((*head_a), print_int);
+        push_node(head_a, head_b);
     }
+    reorder_stack_b(head_b);
+    while ((*head_b))
+        send_chunks_back(head_a, head_b);
 }
-
-// void    opt_b(stack **head_a, stack **head_b)
-// {
-//     stack   *i;
-//     int     max_index;
-//     int     count_rotate;
-    
-//     max_index = ((ft_stacklast(*head_a))->index);
-//     i = (*head_b);
-//     if (!(*head_b)) 
-//         (*head_b) = ft_push(head_a, head_b, PA);
-//     else if (((*head_a)->chunk == (*head_b)->chunk) || (*head_a)->chunk > (*head_b)->chunk)
-//         ft_push(head_a, head_b, PA);
-//     else
-//     {
-//         while (i->next && (*head_a)->chunk < i->chunk)
-//             i = i->next;
-//         if (i->index <= (max_index / 2))
-//         {
-//             count_rotate = 0;
-//             while (i != (*head_b))
-//             {
-//                 ft_rotate(head_b, RB);
-//                 count_rotate ++;
-//             }
-//             ft_push(head_a, head_b, PA);
-//             while (count_rotate > 0)
-//             {
-//                 ft_reverse_rotate(head_b, RRB);
-//                 count_rotate --;
-//             }
-//         }
-//         else if (i->index > (max_index / 2))
-//         {
-//             count_rotate = 1;
-//             while (i != (*head_b))
-//             {
-//                 ft_reverse_rotate(head_b, RRB);
-//                 count_rotate ++;
-//             }
-//             ft_push(head_a, head_b, PA);
-//             while (count_rotate > 0)
-//             {
-//                 ft_reverse_rotate(head_b, RRB);
-//                 count_rotate --;
-//             }
-//         }    
-//     }
-// }
