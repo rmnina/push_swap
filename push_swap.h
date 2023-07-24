@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:37 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/21 19:44:58 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/21 23:34:32 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,17 @@ void    five_values_algo(stack **head_a, stack **head_b);
 void    sort_chunks(stack **head_a, stack **head_b);
 void    sort_index(stack **head_a, stack **head_b);
 void    main_algorithm(stack **head_a, stack **head_b);
-void    incomplete_chunks(stack **head_a, stack **head_b);
+void    send_chunks_back(stack **head_a, stack **head_b);
+
+		//CASES
 void    case_321(stack **head_a, stack **head_b);
 void    case_213(stack **head_a, stack **head_b);
 void    case_312(stack **head_a, stack **head_b);
 
 	//OPTI : BEST MOVES CHECKS
-
-
+void    best_moves_check(stack **head_a, int pos);
+int   	opposite_chunk(stack **head_a, int chunk_max, int chunk_ref);
+void    reorder_stack_b(stack **head_b);
 
 //UTILS
 int		ft_stacksize(stack *head);

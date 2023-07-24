@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:05 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/21 19:44:46 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/21 19:49:47 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int main(int argc, char **argv)
 	stack	*head_b;
 	
 	if (argc < 2)
-		ft_error();
+		return (0);
 	i = 1;
 	head_a = NULL;
 	head_b = NULL;
