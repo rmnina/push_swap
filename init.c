@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:50:54 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/21 19:44:35 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/24 20:25:52 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@ stack  *init_stack_a(char *arg, stack *head_a)
 	return (head_a);
 }
 
-int	is_sorted(stack *head_b)
+int	is_sorted(stack *head_a)
 {
 	stack	*i;
 
-	i = head_b;
-	while (i)
+	i = head_a;
+	while (i->next != NULL)
 	{
-		if (i->chunk < i->next->chunk)
+		if (i->content > i->next->content)
 			return (0);
+		i = i->next;
 	}
 	return (1);
 }

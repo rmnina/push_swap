@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 04:31:26 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/21 19:44:54 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/24 19:38:58 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,11 @@ void    ft_stackclear(stack **lst)
         *lst = pos;
     }
     *lst = NULL;
+}
+
+int ft_abs(int n)
+{
+    if (n < 0)
+        n *= -1;
+    return (n);
 }

@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:05 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/24 15:55:27 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/24 20:27:05 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 void    ft_push_swap(stack **head_a, stack **head_b, int argc)
 {
-	(void) argc;
-	init_sorting_indexes(*head_a);
-	if (argc == 4)
-		three_values_algo(head_a);
-	if (argc == 6)
-		five_values_algo(head_a, head_b);
-	else
-		main_algorithm(head_a, head_b);
+	if (!is_sorted(*head_a))
+	{
+		init_sorting_indexes(*head_a);
+		if (argc == 4)
+			three_values_algo(head_a);
+		if (argc == 6)
+			five_values_algo(head_a, head_b);
+		else
+			main_algorithm(head_a, head_b);
+	}
 }
 
 void print_list_content(stack *head_a, void (*print_func)(int)) 

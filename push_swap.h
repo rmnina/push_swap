@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:37 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/24 18:52:09 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/24 20:00:47 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,18 @@ void    main_algorithm(stack **head_a, stack **head_b);
 void    send_chunks_back(stack **head_a, stack **head_b);
 void    push_node(stack **head_a, stack **head_b);
 
-		//CASES
+	//CASES
 void    case_321(stack **head_a, stack **head_b);
 void    case_213(stack **head_a, stack **head_b);
 void    case_312(stack **head_a, stack **head_b);
 
 	//OPTI : BEST MOVES CHECKS
-void    last_half_a_moves(stack **head_a, stack **head_b, stack **src, stack **dest);
-void    first_half_a_moves(stack **head_a, stack **head_b, stack **src, stack **dest);
-int 	first_half(stack *head, stack *pos);
+void    last_half_a_moves(stack **head_a, stack **head_b, int *moves_a, int *moves_b);
+void    first_half_a_moves(stack **head_a, stack **head_b, int *moves_a, int *moves_b);
+int 	first_half(int moves);
 int 	close_chunks(stack *head_a, stack *head_b);
-int		calc_best_move_a(stack *i, stack *head_a);
-int		calc_best_move_b(stack *i, stack *head_b);
+int		calc_best_move_a(stack **i, stack **head_a);
+int		calc_best_move_b(stack **i, stack **head_b);
 void    reorder_stack_b(stack **head_b);
 
 //UTILS
@@ -108,8 +108,9 @@ void    ft_stackadd_front(stack **head, stack *new);
 stack  *ft_stacklast(stack *last);
 void	ft_stackdelone(stack *lst);
 void    ft_stackclear(stack **lst);
-void print_list_content(stack *head_a, void (*print_func)(int));
-void print_int(int content);
+void 	print_list_content(stack *head_a, void (*print_func)(int));
+void 	print_int(int content);
+int 	ft_abs(int n);
 
 void    ft_push_swap(stack **head_a, stack **head_b, int argc);
 
