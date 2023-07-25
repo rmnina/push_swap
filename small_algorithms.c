@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:56:47 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/24 17:51:35 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/25 00:10:49 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void    five_values_algo(stack **head_a, stack **head_b)
     {
         i = (*head_a);
         pos = 1;
-        if (i->index != 1 || i->index != 5)
+        if (i->index != 1 && i->index != 5)
             while (i->index != 1 && i->index != 5)
             {
                 i = i->next;

@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:55 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/24 22:11:34 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/25 01:16:21 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,22 @@ void    reorder_stack_b(stack **head_b)
 
     count = 0; 
     i = (*head_b);
-    while (i && i->index != 1)
+    while (i && i->chunk != 1)
     {
         i = i->next;
         count++;
     }
-    if (count <= ft_stacksize(*head_b))
-        while (ft_stacklast((*head_b))->index != 1)
+    ft_printf("count = %d, half stack = %d\n", count, ft_stacksize(*head_b) / 2);
+    if (count < ft_stacksize(*head_b) / 2)
+        while (count + 3 > 0)
+        {
             ft_rotate(head_b, RB);
+            count--;
+        }
     else
-        while (ft_stacklast((*head_b))->index != 1)
+        while (count - 3 > 0)
+        {
             ft_reverse_rotate(head_b, RRB);
+            count--;
+        }
 }

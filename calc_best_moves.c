@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:45:51 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/24 23:22:40 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/25 02:51:07 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,30 @@ int calc_best_move_a(stack **i, stack **head_a)
 int calc_best_move_b(stack **i, stack **head_b)
 {
     stack   *j;
+    stack   *temp;
     int     moves;
 
     j = (*head_b);
+    temp = (*head_b);
     moves = 0;
-    if (!j->next && (*i)->chunk < j->chunk)
-        moves +=1;
-    while (j && (*i)->chunk < j->chunk)
+    if (!(j->next) && (*i)->chunk < j->chunk)
+        moves += 1;
+    if ((*i)->chunk < j->chunk)
     {
-        j = j->next;
-        if (moves == ft_stacksize(*head_b) / 2)
-            moves *= -1;
-        else
-            moves++;
+        while (j && (*i)->chunk < j->chunk)
+        {
+            temp = j;
+            if (moves == ft_stacksize(*head_b) / 2)
+                moves *= -1;
+            else
+                moves++;
+            j = j->next;
+        }
     }
-    return (moves);
+    if (!j && (*i)->chunk < temp->chunk)
+        return (ft_stacksize(*head_b) * 10); 
+    else
+        return (moves);
 }
 
 void    first_half_a_moves(stack **head_a, stack **head_b, int *moves_a, int *moves_b)

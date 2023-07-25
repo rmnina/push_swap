@@ -6,13 +6,13 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 18:41:34 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/24 23:43:05 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/25 02:47:54 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    sort_index(stack **head_a, stack **head_b)
+void sort_index(stack **head_a, stack **head_b)
 {
     if ((*head_b)->index > (*head_b)->next->index && (*head_b)->next->index > (*head_b)->next->next->index)
         case_321(head_a, head_b);
@@ -38,8 +38,8 @@ void    sort_index(stack **head_a, stack **head_b)
     }
     else if ((*head_b)->index < (*head_b)->next->index && (*head_b)->next->index < (*head_b)->next->next->index)
     {
-            ft_swap(head_b, SB);
-            case_213(head_a, head_b);
+        ft_swap(head_b, SB);
+        case_213(head_a, head_b);
     }
 }
 
@@ -49,18 +49,23 @@ int first_half(int moves)
         return (1);
     return (0);
 }
-    
 
-void    push_node(stack **head_a, stack **head_b)
+void push_node(stack **head_a, stack **head_b)
 {
-    int     moves_a;
-    int     moves_b;
-    stack   *i;
-    
+    int moves_a;
+    int moves_b;
+    stack *i;
+
     i = (*head_a);
     moves_a = calc_best_move_a(&i, head_a);
     moves_b = calc_best_move_b(&i, head_b);
-    while (i->next)
+     if (calc_best_move_b(&i, head_b) == ft_stacksize(*head_b) * 10)
+        {
+            ft_push(head_a, head_b, PB);
+            ft_rotate(head_b, RB);
+            return;
+        }
+    while (i)
     {
         if (ft_abs(calc_best_move_a(&i, head_a)) + ft_abs(calc_best_move_b(&i, head_b)) < ft_abs(moves_a) + ft_abs(moves_b))
         {
@@ -79,25 +84,25 @@ void    push_node(stack **head_a, stack **head_b)
     {
         if (first_half(moves_a))
             first_half_a_moves(head_a, head_b, &moves_a, &moves_b);
-        else 
+        else
             last_half_a_moves(head_a, head_b, &moves_a, &moves_b);
         ft_push(head_a, head_b, PB);
     }
 }
 
-void    send_chunks_back(stack **head_a, stack **head_b)
+void send_chunks_back(stack **head_a, stack **head_b)
 {
-    int     count;
-    stack   *i;
-        
+    int count;
+    stack *i;
+
     i = (*head_b);
-    count = 0;   
+    count = 0;
     while (i->next && i->chunk == i->next->chunk)
     {
         count++;
         i = i->next;
     }
-    if (count == 2)    
+    if (count == 2)
         sort_index(head_a, head_b);
     else if (count == 1)
     {
@@ -117,7 +122,7 @@ void    send_chunks_back(stack **head_a, stack **head_b)
         ft_push(head_b, head_a, PA);
 }
 
-void    main_algorithm(stack **head_a, stack **head_b)
+void main_algorithm(stack **head_a, stack **head_b)
 {
     if (!(*head_b))
         ft_push(head_a, head_b, PB);
@@ -129,7 +134,11 @@ void    main_algorithm(stack **head_a, stack **head_b)
         print_list_content((*head_b), print_int);
         push_node(head_a, head_b);
     }
+    ft_printf("final b list content \n");
+    print_list_content((*head_b), print_int);
     reorder_stack_b(head_b);
+    ft_printf("reordered b list content \n");
+    print_list_content((*head_b), print_int);
     while ((*head_b))
         send_chunks_back(head_a, head_b);
 }
