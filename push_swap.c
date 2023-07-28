@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:05 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/24 20:27:05 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 19:38:49 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ int main(int argc, char **argv)
 		i++;
 	}
 	ft_push_swap(&head_a, &head_b, argc);
-	ft_printf("content =\n");
-	print_list_content(head_a, print_int);
+	// ft_printf("content =\n");
+	// print_list_content(head_a, print_int);
 	ft_stackclear(&head_a);
 	return (0);
 }

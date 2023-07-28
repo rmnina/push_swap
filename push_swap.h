@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:37 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 16:31:52 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 19:37:22 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int    	good_chunk_check(stack **head_b, stack **i);
 int		ft_stacksize(stack *head);
 stack  *ft_lstnew_node(int content, int index, int chunk);
 void    ft_stackadd_front(stack **head, stack *new);
+void    ft_stackadd_back(stack **head, stack *new);
 stack  *ft_stacklast(stack *last);
 void	ft_stackdelone(stack *lst);
 void    ft_stackclear(stack **lst);

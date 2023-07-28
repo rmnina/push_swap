@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:45:51 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 18:30:53 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 19:13:16 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,6 @@ int    good_chunk_check(stack **head_b, stack **i)
 
     j = *head_b;
     chunk_ref = (*i)->chunk;
-    // while (j)
-    // {
-    //     if (j->chunk == chunk_ref)
-    //         return (chunk_ref);
-    //     j = j->next;
-    // }
-    // j = *head_b;
     while (chunk_ref > 0)
     {
         while (j)
@@ -70,11 +63,20 @@ int calc_best_move_a(stack **i, stack **head_a)
     j = (*head_a);
     while (j && j != (*i))
     {
-        j = j->next;
-        if (moves == ft_stacksize((*head_a)) / 2)
-            moves *= -1;
-        else
+        if (ft_stacksize(*head_a) % 2 == 0)
+        {
+            if (moves == ft_stacksize(*head_a) / 2)
+                moves *= -1;
             moves++;
+        }
+        else
+        {
+            if (moves == ft_stacksize(*head_a) / 2)
+                moves *= -1;
+            else
+                moves++;
+        } 
+        j = j->next;
     }
     return (moves);
 }
@@ -186,7 +188,7 @@ void    last_half_a_moves(stack **head_a, stack **head_b, int *moves_a, int *mov
             while (*moves_b > 0)
             {
                 ft_rotate(head_b, RB);
-                moves_b -= 1;
+                *moves_b -= 1;
             }
     }
 }

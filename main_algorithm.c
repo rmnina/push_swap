@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 18:41:34 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 18:20:14 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 19:15:17 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ void push_node(stack **head_a, stack **head_b)
         {
             moves_a = calc_best_move_a(&i, head_a);
             moves_b = calc_best_move_b(&i, head_b);
+            // ft_printf("i content %d\n", i->content);
+            // ft_printf("good chunk check %d\n", good_chunk_check(head_b, &i));
         }
         i = i->next;
     }
-    ft_printf("move a = %d\n", moves_a);
-    ft_printf("move_b = %d\n", moves_b);
-    if ((*head_a)->next)
-        ft_printf("good chunk check %d\n", good_chunk_check(head_b, head_a));
+    // ft_printf("move a = %d\n", moves_a);
+    // ft_printf("move_b = %d\n", moves_b);
     if (moves_a == 0 && moves_b == 0)
         ft_push(head_a, head_b, PB);
     else if (!(*head_b)->next && moves_b == 1)
@@ -88,12 +88,12 @@ void push_node(stack **head_a, stack **head_b)
     // }
     else
     {
-        ft_printf("moves b before actions = %d\n", moves_b);
+        // ft_printf("moves b before actions = %d\n", moves_b);
         if (first_half(moves_a))
             first_half_a_moves(head_a, head_b, &moves_a, &moves_b);
         else
             last_half_a_moves(head_a, head_b, &moves_a, &moves_b);
-        ft_printf("moves b after actions = %d\n", moves_b);
+        // ft_printf("moves b after actions = %d\n", moves_b);
         ft_push(head_a, head_b, PB);
     }
 }
@@ -135,18 +135,18 @@ void main_algorithm(stack **head_a, stack **head_b)
     if (!(*head_b))
         ft_push(head_a, head_b, PB);
     while (*head_a)
-    {
-        ft_printf("list content \n");
-        print_list_content((*head_a), print_int);
-        ft_printf("b list content \n");
-        print_list_content((*head_b), print_int);
+    // {
+    //     ft_printf("list content \n");
+    //     print_list_content((*head_a), print_int);
+    //     ft_printf("b list content \n");
+    //     print_list_content((*head_b), print_int);
         push_node(head_a, head_b);
-    }
-    ft_printf("final b list content \n");
-    print_list_content((*head_b), print_int);
+    // }
+    // ft_printf("final b list content \n");
+    // print_list_content((*head_b), print_int);
     reorder_stack_b(head_b);
-    ft_printf("reordered b list content \n");
-    print_list_content((*head_b), print_int);
+    // ft_printf("reordered b list content \n");
+    // print_list_content((*head_b), print_int);
     while ((*head_b))
         send_chunks_back(head_a, head_b);
 }
