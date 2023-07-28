@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 04:31:26 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 21:10:37 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 21:22:52 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 stack  *ft_stacklast(stack *last)
 {
-    if (!last)
-        return (NULL);
-    while (last->next)
-        last = last->next;
-    return (last);
+	if (!last)
+		return (NULL);
+	while (last->next)
+		last = last->next;
+	return (last);
 }
 
 stack  *ft_lstnew_node(int content, int index, int chunk)
@@ -27,10 +27,10 @@ stack  *ft_lstnew_node(int content, int index, int chunk)
 
 	new = (stack*)malloc(sizeof(*new));
 	if (!new)
-    	return (NULL);
+		return (NULL);
 	new->content = content;
-    new->index = index;
-    new->chunk = chunk;
+	new->index = index;
+	new->chunk = chunk;
 	new->next = NULL;
 	return (new);
 }
@@ -52,44 +52,21 @@ void    ft_stackadd_back(stack **head, stack *new)
 
 int    ft_stacksize(stack *head)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (head)
-    {
-        i++;
-        head = head->next;
-    }
-    return (i);
+	i = 0;
+	while (head)
+	{
+		i++;
+		head = head->next;
+	}
+	return (i);
 }
 
 void    ft_stackdelone(stack *lst)
 {
-    if (!lst)
-        return ;
-    lst->next = NULL;
-    free(lst);
-}
-
-void    ft_stackclear(stack **lst)
-{
-    stack  *pos;
-    
-    pos = *lst;
-    if (!lst)
-        return ;
-    while (pos)
-    {
-        pos = (*lst)->next;
-        ft_stackdelone(*lst);
-        *lst = pos;
-    }
-    *lst = NULL;
-}
-
-int ft_abs(int n)
-{
-    if (n < 0)
-        n *= -1;
-    return (n);
+	if (!lst)
+		return ;
+	lst->next = NULL;
+	free(lst);
 }

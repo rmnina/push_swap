@@ -6,7 +6,7 @@
 #    By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/31 12:01:53 by jdufour           #+#    #+#              #
-#    Updated: 2023/07/24 18:13:08 by jdufour          ###   ########.fr        #
+#    Updated: 2023/07/28 21:50:53 by jdufour          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,16 @@ NAME = push_swap
 
 SRCS = error_check.c\
 	indexing.c\
-	init.c\
 	instructions.c\
+	instructions2.c\
 	main_algo_cases.c\
 	main_algorithm.c\
 	push_swap.c\
 	small_algorithms.c\
 	utils.c\
+	utils2.c\
 	calc_best_moves.c\
+	calc_best_move_cases.c\
 
 OBJS = ${SRCS:.c=.o}
 

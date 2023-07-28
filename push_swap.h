@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:37 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 20:44:44 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 21:49:25 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define RRB 10
 # define RRR 11
 
-//NODES
+//STRUCT
 
 typedef struct s_node
 {
@@ -51,18 +51,13 @@ void	doubles_check(char **argv);
 void	basic_checks(char *str);
 void	ft_error();
 
-//CREATE STACKS
+//INIT STACK A
 
 stack	*init_stack_a(char *arg, stack *head_a);
-int		is_sorted(stack *head_b);
-
-//INDEX STACK A
-
 void	init_sorting_indexes(stack *head_a);
 void	search_min(stack **i, stack **j, int *min, int k);
 void	move_iterator(stack **i, int k, int *min);
 void	set_new_min(stack **i, int *min);
-
 
 //INSTRUCTIONS
 
@@ -82,37 +77,44 @@ void    minmax_val(stack **head_a, stack **head_b);
 void    five_values_algo(stack **head_a, stack **head_b);
 	
 	//BIG ALGORITHMS
+void	push_node(stack **head_a, stack **head_b, int stacksize);
+void	cases_push_node(stack **head_a, stack **head_b, int *moves_a, int *moves_b);
 void    sort_index(stack **head_a, stack **head_b);
-void    main_algorithm(stack **head_a, stack **head_b);
 void    send_chunks_back(stack **head_a, stack **head_b);
-void    push_node(stack **head_a, stack **head_b, int stacksize);
+void    reorder_stack_b(stack **head_b);
+void    main_algorithm(stack **head_a, stack **head_b);
 
 	//CASES
 void    case_321(stack **head_a, stack **head_b);
 void    case_213(stack **head_a, stack **head_b);
 void    case_312(stack **head_a, stack **head_b);
+void    send_chunks_back_case_1(stack **head_a, stack **head_b, stack **i);
 
 	//OPTI : BEST MOVES CHECKS
 void    last_half_a_moves(stack **head_a, stack **head_b, int *moves_a, int *moves_b);
 void    first_half_a_moves(stack **head_a, stack **head_b, int *moves_a, int *moves_b);
-int 	first_half(int moves);
 int		calc_best_move_a(stack **i, stack **head_a);
 int		calc_best_move_b(stack **i, stack **head_b, int stacksize);
-void    reorder_stack_b(stack **head_b);
 int    	good_chunk_check(stack **head_b, stack **i, int stacksize);
+
+	//BEST MOVES CHECKS CASES
+void    first_half_a_and_b(stack **head_a, stack **head_b, int *moves_a, int *moves_b);
+void    last_half_a_and_b(stack **head_a, stack **head_b, int *moves_a, int *moves_b);
 
 //UTILS
 int		ft_stacksize(stack *head);
 stack  *ft_lstnew_node(int content, int index, int chunk);
-void    ft_stackadd_front(stack **head, stack *new);
 void    ft_stackadd_back(stack **head, stack *new);
 stack  *ft_stacklast(stack *last);
 void	ft_stackdelone(stack *lst);
 void    ft_stackclear(stack **lst);
-void 	print_list_content(stack *head_a, void (*print_func)(int));
-void 	print_int(int content);
 int 	ft_abs(int n);
+int		is_sorted(stack *head_b);
+int 	first_half(int moves);
+
+//MAIN
 
 void    ft_push_swap(stack **head_a, stack **head_b, int argc);
+void 	print_list_content(stack *head_a);
 
 #endif

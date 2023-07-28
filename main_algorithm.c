@@ -6,148 +6,137 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 18:41:34 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 21:08:45 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 22:01:05 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void sort_index(stack **head_a, stack **head_b)
+void    sort_index(stack **head_a, stack **head_b)
 {
-    if ((*head_b)->index > (*head_b)->next->index && (*head_b)->next->index > (*head_b)->next->next->index)
-        case_321(head_a, head_b);
-    else if ((*head_b)->index < (*head_b)->next->index && (*head_b)->next->index > (*head_b)->next->next->index)
-    {
-        if ((*head_b)->index < (*head_b)->next->next->index)
-        {
-            ft_swap(head_b, SB);
-            case_312(head_a, head_b);
-        }
-        else
-        {
-            ft_swap(head_b, SB);
-            case_321(head_a, head_b);
-        }
-    }
-    else if ((*head_b)->index > (*head_b)->next->index && (*head_b)->next->index < (*head_b)->next->next->index)
-    {
-        if ((*head_b)->index < (*head_b)->next->next->index)
-            case_213(head_a, head_b);
-        else
-            case_312(head_a, head_b);
-    }
-    else if ((*head_b)->index < (*head_b)->next->index && (*head_b)->next->index < (*head_b)->next->next->index)
-    {
-        ft_swap(head_b, SB);
-        case_213(head_a, head_b);
-    }
+	if ((*head_b)->index > (*head_b)->next->index && (*head_b)->next->index > (*head_b)->next->next->index)
+		case_321(head_a, head_b);
+	else if ((*head_b)->index < (*head_b)->next->index && (*head_b)->next->index > (*head_b)->next->next->index)
+	{
+		if ((*head_b)->index < (*head_b)->next->next->index)
+		{
+			ft_swap(head_b, SB);
+			case_312(head_a, head_b);
+		}
+		else
+		{
+			ft_swap(head_b, SB);
+			case_321(head_a, head_b);
+		}
+	}
+	else if ((*head_b)->index > (*head_b)->next->index && (*head_b)->next->index < (*head_b)->next->next->index)
+	{
+		if ((*head_b)->index < (*head_b)->next->next->index)
+			case_213(head_a, head_b);
+		else
+			case_312(head_a, head_b);
+	}
+	else if ((*head_b)->index < (*head_b)->next->index && (*head_b)->next->index < (*head_b)->next->next->index)
+	{
+		ft_swap(head_b, SB);
+		case_213(head_a, head_b);
+	}
 }
 
-int first_half(int moves)
+void    push_node(stack **head_a, stack **head_b, int stacksize)
 {
-    if (moves >= 0)
-        return (1);
-    return (0);
+	int moves_a;
+	int moves_b;
+	stack *i;
+
+	i = (*head_a);
+	moves_a = calc_best_move_a(&i, head_a);
+	moves_b = calc_best_move_b(&i, head_b, stacksize);
+	while (i)
+	{
+		if (ft_abs(calc_best_move_a(&i, head_a)) + ft_abs(calc_best_move_b(&i, head_b, stacksize)) < ft_abs(moves_a) + ft_abs(moves_b))
+		{
+			moves_a = calc_best_move_a(&i, head_a);
+			moves_b = calc_best_move_b(&i, head_b, stacksize);
+			ft_printf("i content %d\n", i->content);
+			ft_printf("good chunk check %d\n", good_chunk_check(head_b, &i, stacksize));
+		}
+		i = i->next;
+	}
+	ft_printf("move a = %d\n", moves_a);
+	ft_printf("move_b = %d\n", moves_b);
+	cases_push_node(head_a, head_b, &moves_a, &moves_b);
 }
 
-void push_node(stack **head_a, stack **head_b, int stacksize)
+void    reorder_stack_b(stack **head_b)
 {
-    int moves_a;
-    int moves_b;
-    stack *i;
+    stack   *i;
+    int     count;
 
-    i = (*head_a);
-    moves_a = calc_best_move_a(&i, head_a);
-    moves_b = calc_best_move_b(&i, head_b, stacksize);
-    while (i)
-    {
-        if (ft_abs(calc_best_move_a(&i, head_a)) + ft_abs(calc_best_move_b(&i, head_b, stacksize)) < ft_abs(moves_a) + ft_abs(moves_b))
-        {
-            moves_a = calc_best_move_a(&i, head_a);
-            moves_b = calc_best_move_b(&i, head_b, stacksize);
-            // ft_printf("i content %d\n", i->content);
-            // ft_printf("good chunk check %d, opposite chunk %d\n", good_chunk_check(head_b, &i, stacksize), (stacksize / 3) + 1 - good_chunk_check(head_b, &i, stacksize));
-        }
-        i = i->next;
-    }
-    // ft_printf("move a = %d\n", moves_a);
-    // ft_printf("move_b = %d\n", moves_b);
-    if ((*head_a) && (*head_a)->next && (*head_a)->next->next && (*head_a)->chunk == (*head_a)->next->next->chunk)
-    {
-        ft_swap(head_a, SA);
-        ft_push(head_a, head_b, PB);
-    }
-    if (moves_a == 0 && moves_b == 0)
-        ft_push(head_a, head_b, PB);
-    else if (!(*head_b)->next && moves_b == 1)
-    {
-        ft_push(head_a, head_b, PB);
-        ft_swap(head_b, SB);
-    }
-    else
-    {
-        // ft_printf("moves b before actions = %d\n", moves_b);
-        if (first_half(moves_a))
-            first_half_a_moves(head_a, head_b, &moves_a, &moves_b);
-        else
-            last_half_a_moves(head_a, head_b, &moves_a, &moves_b);
-        // ft_printf("moves b after actions = %d\n", moves_b);
-        ft_push(head_a, head_b, PB);
-    }
-}
-
-void send_chunks_back(stack **head_a, stack **head_b)
-{
-    int count;
-    stack *i;
-
+    count = 0; 
     i = (*head_b);
-    count = 0;
-    while (i->next && i->chunk == i->next->chunk)
+    while (i && i->chunk != 1)
     {
-        count++;
         i = i->next;
+        count++;
     }
-    if (count == 2)
-        sort_index(head_a, head_b);
-    else if (count == 1)
-    {
-        if ((*head_b)->index > i->index)
+    if (count < ft_stacksize(*head_b) / 2)
+        while (count + 3 > 0)
         {
-            ft_push(head_b, head_a, PA);
-            ft_push(head_b, head_a, PA);
+            ft_rotate(head_b, RB);
+            count--;
         }
-        else
-        {
-            ft_swap(head_b, SB);
-            ft_push(head_b, head_a, PA);
-            ft_push(head_b, head_a, PA);
-        }
-    }
     else
-        ft_push(head_b, head_a, PA);
+    {
+        count = (ft_stacksize((*head_b)) - count - 3);
+        while (count > 0)
+        {
+            ft_reverse_rotate(head_b, RRB);
+            count--;
+        }
+    }
 }
 
-void main_algorithm(stack **head_a, stack **head_b)
+void    send_chunks_back(stack **head_a, stack **head_b)
 {
-    int stacksize;
+	int     count;
+	stack   *i;
 
-    stacksize = ft_stacksize(*head_a);
-    if (!(*head_b))
-        ft_push(head_a, head_b, PB);
-    while (*head_a)
-    {
-        // ft_printf("list content \n");
-        // print_list_content((*head_a), print_int);
-        // ft_printf("b list content \n");
-        // print_list_content((*head_b), print_int);
-        push_node(head_a, head_b, stacksize);
-    }
-    // ft_printf("final b list content \n");
-    // print_list_content((*head_b), print_int);
-    reorder_stack_b(head_b);
-    // ft_printf("reordered b list content \n");
-    // print_list_content((*head_b), print_int);
-    while ((*head_b))
-        send_chunks_back(head_a, head_b);
+	i = (*head_b);
+	count = 0;
+	while (i->next && i->chunk == i->next->chunk)
+	{
+		count++;
+		i = i->next;
+	}
+	if (count == 2)
+		sort_index(head_a, head_b);
+	else if (count == 1)
+		send_chunks_back_case_1(head_a, head_b, &i);
+	else
+		ft_push(head_b, head_a, PA);
+}
+
+void    main_algorithm(stack **head_a, stack **head_b)
+{
+	int stacksize;
+
+	stacksize = ft_stacksize(*head_a);
+	if (!(*head_b))
+		ft_push(head_a, head_b, PB);
+	while (*head_a)
+	{
+		ft_printf("list content \n");
+		print_list_content((*head_a));
+		ft_printf("b list content \n");
+		print_list_content((*head_b));
+		push_node(head_a, head_b, stacksize);
+	}
+	ft_printf("final b list content \n");
+	print_list_content((*head_b));
+	reorder_stack_b(head_b);
+	ft_printf("reordered b list content \n");
+	print_list_content((*head_b));
+	while ((*head_b))
+		send_chunks_back(head_a, head_b);
 }
