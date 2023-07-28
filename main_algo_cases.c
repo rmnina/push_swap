@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:55 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 22:22:15 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 22:28:39 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,10 @@ void    cases_push_node(stack **head_a, stack **head_b, int *moves_a, int *moves
 		ft_push(head_a, head_b, PB);
 	else
 	{
-		ft_printf("moves b before actions = %d\n", *moves_b);
 		if (first_half(*moves_a))
 			first_half_a_moves(head_a, head_b, moves_a, moves_b);
 		else
 			last_half_a_moves(head_a, head_b, moves_a, moves_b);
-		ft_printf("moves b after actions = %d\n", *moves_b);
 		ft_push(head_a, head_b, PB);
 	}
 }

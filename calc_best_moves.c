@@ -6,22 +6,19 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:45:51 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 21:44:23 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 22:31:10 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int    good_chunk_check(stack **head_b, stack **i, int stacksize)
+int    good_chunk_check(stack **head_b, stack **i)
 {
 	stack   *j;
 	int     chunk_ref;
-	// int     opposite_chunk;
-	(void) stacksize;
 	
 	j = *head_b;
 	chunk_ref = (*i)->chunk;
-	// opposite_chunk = (stacksize / 3) + 1 - chunk_ref;
 	while (chunk_ref > 0)
 	{
 		while (j)
@@ -70,7 +67,7 @@ int calc_best_move_a(stack **i, stack **head_a)
 	return (moves);
 }
 
-int calc_best_move_b(stack **i, stack **head_b, int stacksize)
+int calc_best_move_b(stack **i, stack **head_b)
 {
 	stack   *j;
 	int     moves;
@@ -79,7 +76,7 @@ int calc_best_move_b(stack **i, stack **head_b, int stacksize)
 	moves = 0;
 	while (j)
 	{
-		if (j->chunk == good_chunk_check(head_b, i, stacksize))
+		if (j->chunk == good_chunk_check(head_b, i))
 			return (moves);
 		if (ft_stacksize(*head_b) % 2 == 0)
 		{
