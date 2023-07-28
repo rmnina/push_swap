@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:37 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/24 20:00:47 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 16:31:52 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int 	close_chunks(stack *head_a, stack *head_b);
 int		calc_best_move_a(stack **i, stack **head_a);
 int		calc_best_move_b(stack **i, stack **head_b);
 void    reorder_stack_b(stack **head_b);
+int    	good_chunk_check(stack **head_b, stack **i);
 
 //UTILS
 int		ft_stacksize(stack *head);

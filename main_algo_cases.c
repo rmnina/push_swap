@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:55 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/25 01:16:21 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 17:40:22 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,12 @@ void    reorder_stack_b(stack **head_b)
             count--;
         }
     else
-        while (count - 3 > 0)
+    {
+        count = (ft_stacksize((*head_b)) - count - 3);
+        while (count > 0)
         {
             ft_reverse_rotate(head_b, RRB);
             count--;
         }
+    }
 }

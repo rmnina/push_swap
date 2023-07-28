@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 18:41:34 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/25 02:47:54 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 18:20:14 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,12 @@ void push_node(stack **head_a, stack **head_b)
 {
     int moves_a;
     int moves_b;
+    // static int chunk_min = 1;
     stack *i;
 
     i = (*head_a);
     moves_a = calc_best_move_a(&i, head_a);
     moves_b = calc_best_move_b(&i, head_b);
-     if (calc_best_move_b(&i, head_b) == ft_stacksize(*head_b) * 10)
-        {
-            ft_push(head_a, head_b, PB);
-            ft_rotate(head_b, RB);
-            return;
-        }
     while (i)
     {
         if (ft_abs(calc_best_move_a(&i, head_a)) + ft_abs(calc_best_move_b(&i, head_b)) < ft_abs(moves_a) + ft_abs(moves_b))
@@ -76,16 +71,29 @@ void push_node(stack **head_a, stack **head_b)
     }
     ft_printf("move a = %d\n", moves_a);
     ft_printf("move_b = %d\n", moves_b);
-    // if (moves_b == -1 && ft_stacksize(*head_b) < 3)
-    //     ft_push(head_a, head_b, PB);
+    if ((*head_a)->next)
+        ft_printf("good chunk check %d\n", good_chunk_check(head_b, head_a));
     if (moves_a == 0 && moves_b == 0)
         ft_push(head_a, head_b, PB);
+    else if (!(*head_b)->next && moves_b == 1)
+    {
+        ft_push(head_a, head_b, PB);
+        ft_swap(head_b, SB);
+    }
+    // else if (moves_a == 0 && (*head_a)->chunk == chunk_min)
+    // {
+    //     ft_push(head_a, head_b, PB);
+    //     ft_rotate(head_b, RB);
+    //     chunk_min = 0;
+    // }
     else
     {
+        ft_printf("moves b before actions = %d\n", moves_b);
         if (first_half(moves_a))
             first_half_a_moves(head_a, head_b, &moves_a, &moves_b);
         else
             last_half_a_moves(head_a, head_b, &moves_a, &moves_b);
+        ft_printf("moves b after actions = %d\n", moves_b);
         ft_push(head_a, head_b, PB);
     }
 }
