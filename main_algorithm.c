@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 18:41:34 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 20:43:03 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 21:08:45 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void push_node(stack **head_a, stack **head_b, int stacksize)
 {
     int moves_a;
     int moves_b;
-    // static int chunk_min = 1;
     stack *i;
 
     i = (*head_a);
@@ -67,12 +66,17 @@ void push_node(stack **head_a, stack **head_b, int stacksize)
             moves_a = calc_best_move_a(&i, head_a);
             moves_b = calc_best_move_b(&i, head_b, stacksize);
             // ft_printf("i content %d\n", i->content);
-            // ft_printf("good chunk check %d\n", good_chunk_check(head_b, &i));
+            // ft_printf("good chunk check %d, opposite chunk %d\n", good_chunk_check(head_b, &i, stacksize), (stacksize / 3) + 1 - good_chunk_check(head_b, &i, stacksize));
         }
         i = i->next;
     }
     // ft_printf("move a = %d\n", moves_a);
     // ft_printf("move_b = %d\n", moves_b);
+    if ((*head_a) && (*head_a)->next && (*head_a)->next->next && (*head_a)->chunk == (*head_a)->next->next->chunk)
+    {
+        ft_swap(head_a, SA);
+        ft_push(head_a, head_b, PB);
+    }
     if (moves_a == 0 && moves_b == 0)
         ft_push(head_a, head_b, PB);
     else if (!(*head_b)->next && moves_b == 1)
@@ -80,12 +84,6 @@ void push_node(stack **head_a, stack **head_b, int stacksize)
         ft_push(head_a, head_b, PB);
         ft_swap(head_b, SB);
     }
-    // else if (moves_a == 0 && (*head_a)->chunk == chunk_min)
-    // {
-    //     ft_push(head_a, head_b, PB);
-    //     ft_rotate(head_b, RB);
-    //     chunk_min = 0;
-    // }
     else
     {
         // ft_printf("moves b before actions = %d\n", moves_b);
@@ -138,13 +136,13 @@ void main_algorithm(stack **head_a, stack **head_b)
     if (!(*head_b))
         ft_push(head_a, head_b, PB);
     while (*head_a)
-    // {
-    //     ft_printf("list content \n");
-    //     print_list_content((*head_a), print_int);
-    //     ft_printf("b list content \n");
-    //     print_list_content((*head_b), print_int);
+    {
+        // ft_printf("list content \n");
+        // print_list_content((*head_a), print_int);
+        // ft_printf("b list content \n");
+        // print_list_content((*head_b), print_int);
         push_node(head_a, head_b, stacksize);
-    // }
+    }
     // ft_printf("final b list content \n");
     // print_list_content((*head_b), print_int);
     reorder_stack_b(head_b);

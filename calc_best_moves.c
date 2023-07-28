@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:45:51 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 20:45:14 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 21:01:35 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,17 @@ int    good_chunk_check(stack **head_b, stack **i, int stacksize)
 {
     stack   *j;
     int     chunk_ref;
-    int     opposite_chunk;
+    // int     opposite_chunk;
+    (void) stacksize;
     
     j = *head_b;
     chunk_ref = (*i)->chunk;
-    opposite_chunk = stacksize + 1 - chunk_ref;
+    // opposite_chunk = (stacksize / 3) + 1 - chunk_ref;
     while (chunk_ref > 0)
     {
         while (j)
         {
-            if (j->chunk == chunk_ref || j->chunk == opposite_chunk)
+            if (j->chunk == chunk_ref)
                 return (chunk_ref);
             j = j->next;
         }

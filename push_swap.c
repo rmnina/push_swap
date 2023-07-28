@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:05 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 20:45:40 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 21:10:11 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,44 +26,26 @@ void    ft_push_swap(stack **head_a, stack **head_b, int argc)
 	}
 }
 
-void print_list_content(stack *head_a, void (*print_func)(int)) 
-{
-    stack *current = head_a;
+// void print_list_content(stack *head_a, void (*print_func)(int)) 
+// {
+//     stack *current;
+	
+// 	current = head_a;
+//     while (current != NULL) 
+// 	{
+//         print_func(current->content);
+//         current = current->next;
+//     }
+//     ft_printf("\n");
+// }
 
-    while (current != NULL) {
-        print_func(current->content);
-        current = current->next;
-    }
-    ft_printf("\n");
-}
-
-void print_list_chunk(stack *head_a, void (*print_func)(int)) 
-{
-    stack *current = head_a;
-
-    while (current != NULL) {
-        print_func(current->chunk);
-        current = current->next;
-    }
-    ft_printf("\n");
-}
-
-void print_list_index(stack *head_a, void (*print_func)(int)) 
-{
-    stack *current = head_a;
-
-    while (current != NULL) {
-        print_func(current->index);
-        current = current->next;
-    }
-    ft_printf("\n");
-}
-
-void print_int(int content) 
-{
-    int value = content;
-    ft_printf("%d ", value);
-}
+// void print_int(int content) 
+// {
+//     int value;
+	
+// 	value = content;
+//     ft_printf("%d ", value);
+// }
 
 int main(int argc, char **argv)
 {
@@ -84,8 +66,8 @@ int main(int argc, char **argv)
 		i++;
 	}
 	ft_push_swap(&head_a, &head_b, argc);
-	ft_printf("content =\n");
-	print_list_content(head_a, print_int);
+	// ft_printf("content =\n");
+	// print_list_content(head_a, print_int);
 	ft_stackclear(&head_a);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 04:31:26 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 19:36:59 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 21:10:37 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,6 @@ void    ft_stackadd_back(stack **head, stack *new)
 	}
 	else
 		*head = new;
-}
-
-void    ft_stackadd_front(stack **head, stack *new)
-{
-    if (!head || !new)
-        return ;
-    new->next = *head;
-    *head = new;
 }
 
 int    ft_stacksize(stack *head)

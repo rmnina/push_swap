@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:51:30 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/24 18:07:51 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 21:08:20 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,23 +111,3 @@ void	ft_reverse_rotate_both(stack **head_a, stack **head_b, int move)
 	ft_reverse_rotate(head_b, 0);
 	write_move(move);
 }
-
-// void	tri_test(stack **head)
-// {
-// 	stack	*i;
-// 	stack	*j;
-
-// 	i = (*head);
-// 	j = NULL;
-// 	while (i)
-// 	{
-// 		j = i->next;
-// 		while (j)
-// 		{
-// 			if (j->index < i->index)
-// 				ft_swap(head, SA);
-// 			j = j->next;
-// 		}
-// 		i = i->next;	
-// 	}
-// }

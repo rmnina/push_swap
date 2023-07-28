@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:55 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 19:15:02 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 21:08:31 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void    reorder_stack_b(stack **head_b)
         i = i->next;
         count++;
     }
-    // ft_printf("count = %d, half stack = %d\n", count, ft_stacksize(*head_b) / 2);
     if (count < ft_stacksize(*head_b) / 2)
         while (count + 3 > 0)
         {
