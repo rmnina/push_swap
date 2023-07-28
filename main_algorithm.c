@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 18:41:34 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 19:15:17 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:43:03 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int first_half(int moves)
     return (0);
 }
 
-void push_node(stack **head_a, stack **head_b)
+void push_node(stack **head_a, stack **head_b, int stacksize)
 {
     int moves_a;
     int moves_b;
@@ -59,13 +59,13 @@ void push_node(stack **head_a, stack **head_b)
 
     i = (*head_a);
     moves_a = calc_best_move_a(&i, head_a);
-    moves_b = calc_best_move_b(&i, head_b);
+    moves_b = calc_best_move_b(&i, head_b, stacksize);
     while (i)
     {
-        if (ft_abs(calc_best_move_a(&i, head_a)) + ft_abs(calc_best_move_b(&i, head_b)) < ft_abs(moves_a) + ft_abs(moves_b))
+        if (ft_abs(calc_best_move_a(&i, head_a)) + ft_abs(calc_best_move_b(&i, head_b, stacksize)) < ft_abs(moves_a) + ft_abs(moves_b))
         {
             moves_a = calc_best_move_a(&i, head_a);
-            moves_b = calc_best_move_b(&i, head_b);
+            moves_b = calc_best_move_b(&i, head_b, stacksize);
             // ft_printf("i content %d\n", i->content);
             // ft_printf("good chunk check %d\n", good_chunk_check(head_b, &i));
         }
@@ -132,6 +132,9 @@ void send_chunks_back(stack **head_a, stack **head_b)
 
 void main_algorithm(stack **head_a, stack **head_b)
 {
+    int stacksize;
+
+    stacksize = ft_stacksize(*head_a);
     if (!(*head_b))
         ft_push(head_a, head_b, PB);
     while (*head_a)
@@ -140,7 +143,7 @@ void main_algorithm(stack **head_a, stack **head_b)
     //     print_list_content((*head_a), print_int);
     //     ft_printf("b list content \n");
     //     print_list_content((*head_b), print_int);
-        push_node(head_a, head_b);
+        push_node(head_a, head_b, stacksize);
     // }
     // ft_printf("final b list content \n");
     // print_list_content((*head_b), print_int);

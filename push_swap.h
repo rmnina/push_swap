@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:37 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 19:37:22 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:44:44 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void    five_values_algo(stack **head_a, stack **head_b);
 void    sort_index(stack **head_a, stack **head_b);
 void    main_algorithm(stack **head_a, stack **head_b);
 void    send_chunks_back(stack **head_a, stack **head_b);
-void    push_node(stack **head_a, stack **head_b);
+void    push_node(stack **head_a, stack **head_b, int stacksize);
 
 	//CASES
 void    case_321(stack **head_a, stack **head_b);
@@ -96,11 +96,10 @@ void    case_312(stack **head_a, stack **head_b);
 void    last_half_a_moves(stack **head_a, stack **head_b, int *moves_a, int *moves_b);
 void    first_half_a_moves(stack **head_a, stack **head_b, int *moves_a, int *moves_b);
 int 	first_half(int moves);
-int 	close_chunks(stack *head_a, stack *head_b);
 int		calc_best_move_a(stack **i, stack **head_a);
-int		calc_best_move_b(stack **i, stack **head_b);
+int		calc_best_move_b(stack **i, stack **head_b, int stacksize);
 void    reorder_stack_b(stack **head_b);
-int    	good_chunk_check(stack **head_b, stack **i);
+int    	good_chunk_check(stack **head_b, stack **i, int stacksize);
 
 //UTILS
 int		ft_stacksize(stack *head);

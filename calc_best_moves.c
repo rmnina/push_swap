@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:45:51 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 19:13:16 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:45:14 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,20 @@
 //         return (0);
 // }
 
-int    good_chunk_check(stack **head_b, stack **i)
+int    good_chunk_check(stack **head_b, stack **i, int stacksize)
 {
     stack   *j;
     int     chunk_ref;
-
+    int     opposite_chunk;
+    
     j = *head_b;
     chunk_ref = (*i)->chunk;
+    opposite_chunk = stacksize + 1 - chunk_ref;
     while (chunk_ref > 0)
     {
         while (j)
         {
-            if (j->chunk == chunk_ref)
+            if (j->chunk == chunk_ref || j->chunk == opposite_chunk)
                 return (chunk_ref);
             j = j->next;
         }
@@ -81,18 +83,16 @@ int calc_best_move_a(stack **i, stack **head_a)
     return (moves);
 }
 
-int calc_best_move_b(stack **i, stack **head_b)
+int calc_best_move_b(stack **i, stack **head_b, int stacksize)
 {
     stack   *j;
-    // stack   *temp;
     int     moves;
 
     j = (*head_b);
-    // temp = (*head_b);
     moves = 0;
     while (j)
     {
-        if (j->chunk == good_chunk_check(head_b, i))
+        if (j->chunk == good_chunk_check(head_b, i, stacksize))
             return (moves);
         if (ft_stacksize(*head_b) % 2 == 0)
         {
