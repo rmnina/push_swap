@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 18:41:34 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 22:31:45 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/08/03 18:24:57 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,6 @@ void    send_chunks_back(stack **head_a, stack **head_b)
 
 void    main_algorithm(stack **head_a, stack **head_b)
 {
-	int stacksize;
-
-	stacksize = ft_stacksize(*head_a);
 	if (!(*head_b))
 		ft_push(head_a, head_b, PB);
 	while (*head_a)

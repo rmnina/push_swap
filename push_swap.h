@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:37 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 22:30:55 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/08/03 18:24:29 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ void    last_half_a_moves(stack **head_a, stack **head_b, int *moves_a, int *mov
 void    first_half_a_moves(stack **head_a, stack **head_b, int *moves_a, int *moves_b);
 int		calc_best_move_a(stack **i, stack **head_a);
 int		calc_best_move_b(stack **i, stack **head_b);
-int    	good_chunk_check(stack **head_b, stack **i);
+int    	good_sup_chunk_check(stack **head_b, stack **i);
+int		good_inf_chunk_check(stack **head_b, stack **i);
 
 	//BEST MOVES CHECKS CASES
 void    first_half_a_and_b(stack **head_a, stack **head_b, int *moves_a, int *moves_b);
