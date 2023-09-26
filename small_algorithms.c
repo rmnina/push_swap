@@ -6,39 +6,42 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:56:47 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 21:22:39 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/09/24 19:19:42 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    three_values_algo(stack **head_a)
+void	three_values_algo(t_stack **head_a)
 {
-	if ((*head_a)->index > (*head_a)->next->index && (*head_a)->next->index > (*head_a)->next->next->index) //3 2 1
+	if ((*head_a)->index > (*head_a)->next->index && \
+	(*head_a)->next->index > (*head_a)->next->next->index)
 	{
 		ft_rotate(head_a, RA);
 		ft_swap(head_a, SA);
 	}
-	else if ((*head_a)->index < (*head_a)->next->index && (*head_a)->next->index > (*head_a)->next->next->index)
+	else if ((*head_a)->index < (*head_a)->next->index && \
+	(*head_a)->next->index > (*head_a)->next->next->index)
 	{
-		if ((*head_a)->index < (*head_a)->next->next->index) // 1 3 2
+		if ((*head_a)->index < (*head_a)->next->next->index)
 		{
 			ft_reverse_rotate(head_a, RRA);
 			ft_swap(head_a, SA);
 		}
-		else // 2 3 1
+		else
 			ft_reverse_rotate(head_a, RRA);
 	}
-	else if ((*head_a)->index > (*head_a)->next->index && (*head_a)->next->index < (*head_a)->next->next->index)
+	else if ((*head_a)->index > (*head_a)->next->index && \
+	(*head_a)->next->index < (*head_a)->next->next->index)
 	{
-		if ((*head_a)->index < (*head_a)->next->next->index) // 2 1 3
+		if ((*head_a)->index < (*head_a)->next->next->index)
 			ft_swap(head_a, SA);
-		else // 3 1 2
+		else
 			ft_rotate(head_a, RA);
 	}
 }
 
-void    minmax_val(stack **head_a, stack **head_b)
+void	minmax_val(t_stack **head_a, t_stack **head_b)
 {
 	if ((*head_b)->content < (*head_a)->content)
 	{
@@ -49,26 +52,28 @@ void    minmax_val(stack **head_a, stack **head_b)
 	else
 	{
 		ft_push(head_b, head_a, PA);
-		ft_rotate(head_a, RA);  
-		ft_push(head_b, head_a, PA);      
+		ft_rotate(head_a, RA);
+		ft_push(head_b, head_a, PA);
 	}
 }
 
-void    five_values_algo(stack **head_a, stack **head_b)
+void	five_values_algo(t_stack **head_a, t_stack **head_b)
 {
-	stack   *i;
-	int     pos;
+	t_stack	*i;
+	int		pos;
 
 	while (ft_stacksize((*head_a)) != 3)
 	{
 		i = (*head_a);
 		pos = 1;
 		if (i->index != 1 && i->index != 5)
+		{
 			while (i->index != 1 && i->index != 5)
 			{
 				i = i->next;
 				pos++;
 			}
+		}
 		if (pos < 3)
 			while ((*head_a)->index != i->index)
 				ft_rotate(head_a, RA);

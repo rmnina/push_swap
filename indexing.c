@@ -6,22 +6,22 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:58:31 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/21 19:44:32 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/09/24 19:02:17 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	set_chunk(stack **i, int k)
+void	set_chunk(t_stack **i, int k)
 {
 	static int	chunk = 1;
-	
+
 	(*i)->chunk = chunk;
 	if (k >= 3 && k % 3 == 0)
 		chunk++;
 }
 
-void	search_min(stack **i, stack **j, int *min, int k)
+void	search_min(t_stack **i, t_stack **j, int *min, int k)
 {
 	(*j) = (*i)->next;
 	while ((*j) != NULL)
@@ -30,14 +30,14 @@ void	search_min(stack **i, stack **j, int *min, int k)
 		{
 			(*j)->index = k;
 			set_chunk(j, k);
-			break;
+			break ;
 		}
 		(*j) = (*j)->next;
 	}
 	*min = (*i)->content;
 }
 
-void	move_iterator(stack **i, int k, int *min)
+void	move_iterator(t_stack **i, int k, int *min)
 {
 	(*i)->index = k;
 	set_chunk(i, k);
@@ -46,23 +46,23 @@ void	move_iterator(stack **i, int k, int *min)
 	set_new_min(i, min);
 }
 
-void set_new_min(stack **i, int *min)
+void	set_new_min(t_stack **i, int *min)
 {
 	while ((*i))
 	{
 		if ((*i)->index == 0)
 		{
 			*min = (*i)->content;
-			break;
+			break ;
 		}
 		(*i) = (*i)->next;
 	}
 }
 
-void	init_sorting_indexes(stack *head_a)
+void	init_sorting_indexes(t_stack *head_a)
 {
-	stack		*i;
-	stack		*j;
+	t_stack		*i;
+	t_stack		*j;
 	int			min;
 	int			k;
 

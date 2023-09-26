@@ -6,13 +6,13 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 04:31:26 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 21:22:52 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/09/24 19:22:32 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-stack  *ft_stacklast(stack *last)
+t_stack	*ft_stacklast(t_stack *last)
 {
 	if (!last)
 		return (NULL);
@@ -21,11 +21,11 @@ stack  *ft_stacklast(stack *last)
 	return (last);
 }
 
-stack  *ft_lstnew_node(int content, int index, int chunk)
+t_stack	*ft_lstnew_node(int content, int index, int chunk)
 {
-	stack  *new;
+	t_stack	*new;
 
-	new = (stack*)malloc(sizeof(*new));
+	new = (t_stack *)malloc(sizeof(*new));
 	if (!new)
 		return (NULL);
 	new->content = content;
@@ -35,9 +35,9 @@ stack  *ft_lstnew_node(int content, int index, int chunk)
 	return (new);
 }
 
-void    ft_stackadd_back(stack **head, stack *new)
+void	ft_stackadd_back(t_stack **head, t_stack *new)
 {
-	stack  *last;
+	t_stack	*last;
 
 	if (!new)
 		return ;
@@ -50,9 +50,9 @@ void    ft_stackadd_back(stack **head, stack *new)
 		*head = new;
 }
 
-int    ft_stacksize(stack *head)
+int	ft_stacksize(t_stack *head)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (head)
@@ -63,7 +63,7 @@ int    ft_stacksize(stack *head)
 	return (i);
 }
 
-void    ft_stackdelone(stack *lst)
+void	ft_stackdelone(t_stack *lst)
 {
 	if (!lst)
 		return ;

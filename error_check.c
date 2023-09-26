@@ -6,22 +6,22 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:50:45 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/21 19:44:23 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/09/24 19:00:57 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error()
+void	ft_error(void)
 {
 	ft_putstr_fd("Error\n", 2);
-	exit(1); 
+	exit(1);
 }
 
-void basic_checks(char *str)
+void	basic_checks(char *str)
 {
-	int i;
-	long long int value;
+	int				i;
+	long long int	value;
 
 	i = 0;
 	value = 0;

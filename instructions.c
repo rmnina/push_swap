@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:51:30 by jdufour           #+#    #+#             */
-/*   Updated: 2023/07/28 21:19:53 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/09/24 19:04:29 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	write_move(int move)
 		ft_putstr("rrr\n");
 }
 
-stack	*ft_push(stack **head_push, stack **head_rec, int move)
+t_stack	*ft_push(t_stack **head_push, t_stack **head_rec, int move)
 {
-	stack	*temp;
+	t_stack	*temp;
 
 	temp = (*head_push);
 	(*head_push) = (*head_push)->next;
@@ -50,12 +50,12 @@ stack	*ft_push(stack **head_push, stack **head_rec, int move)
 	return ((*head_rec));
 }
 
-void	ft_swap(stack **head, int move)
+void	ft_swap(t_stack **head, int move)
 {
-	stack	*temp;
-	
+	t_stack	*temp;
+
 	if (!(*head) || !((*head)->next))
-		return;
+		return ;
 	temp = (*head);
 	(*head) = (*head)->next;
 	temp->next = (*head)->next;
@@ -63,37 +63,37 @@ void	ft_swap(stack **head, int move)
 	write_move(move);
 }
 
-void	ft_rotate(stack **head, int move)
+void	ft_rotate(t_stack **head, int move)
 {
-	stack	*last;
-	stack	*temp;
-	
+	t_stack	*last;
+	t_stack	*temp;
+
 	if (*head == NULL || (*head)->next == NULL)
-        return;
+		return ;
 	last = ft_stacklast((*head));
 	temp = (*head);
 	last->next = temp;
-    *head = temp->next;
-    temp->next = NULL;
+	*head = temp->next;
+	temp->next = NULL;
 	write_move(move);
 }
 
-void	ft_reverse_rotate(stack **head, int move)
+void	ft_reverse_rotate(t_stack **head, int move)
 {
-	stack	*last;
-	stack	*second_to_last;
-	
+	t_stack	*last;
+	t_stack	*second_to_last;
+
 	last = (*head);
 	second_to_last = NULL;
 	if (*head == NULL || (*head)->next == NULL)
-        return;
+		return ;
 	while (last->next != NULL)
-    {
-        second_to_last = last;
-        last = last->next;
-    }
+	{
+		second_to_last = last;
+		last = last->next;
+	}
 	last->next = *head;
-    *head = last;
-    second_to_last->next = NULL;
+	*head = last;
+	second_to_last->next = NULL;
 	write_move(move);
 }

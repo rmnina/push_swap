@@ -6,17 +6,19 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 18:41:34 by jdufour           #+#    #+#             */
-/*   Updated: 2023/08/03 18:24:57 by jdufour          ###   ########.fr       */
+/*   Updated: 2023/09/24 19:11:11 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    sort_index(stack **head_a, stack **head_b)
+void	sort_index(t_stack **head_a, t_stack **head_b)
 {
-	if ((*head_b)->index > (*head_b)->next->index && (*head_b)->next->index > (*head_b)->next->next->index)
+	if ((*head_b)->index > (*head_b)->next->index && \
+	(*head_b)->next->index > (*head_b)->next->next->index)
 		case_321(head_a, head_b);
-	else if ((*head_b)->index < (*head_b)->next->index && (*head_b)->next->index > (*head_b)->next->next->index)
+	else if ((*head_b)->index < (*head_b)->next->index && \
+	(*head_b)->next->index > (*head_b)->next->next->index)
 	{
 		if ((*head_b)->index < (*head_b)->next->next->index)
 		{
@@ -29,32 +31,36 @@ void    sort_index(stack **head_a, stack **head_b)
 			case_321(head_a, head_b);
 		}
 	}
-	else if ((*head_b)->index > (*head_b)->next->index && (*head_b)->next->index < (*head_b)->next->next->index)
+	else if ((*head_b)->index > (*head_b)->next->index && \
+	(*head_b)->next->index < (*head_b)->next->next->index)
 	{
 		if ((*head_b)->index < (*head_b)->next->next->index)
 			case_213(head_a, head_b);
 		else
 			case_312(head_a, head_b);
 	}
-	else if ((*head_b)->index < (*head_b)->next->index && (*head_b)->next->index < (*head_b)->next->next->index)
+	else if ((*head_b)->index < (*head_b)->next->index && \
+	(*head_b)->next->index < (*head_b)->next->next->index)
 	{
 		ft_swap(head_b, SB);
 		case_213(head_a, head_b);
 	}
 }
 
-void    push_node(stack **head_a, stack **head_b)
+void	push_node(t_stack **head_a, t_stack **head_b)
 {
-	int moves_a;
-	int moves_b;
-	stack *i;
+	int		moves_a;
+	int		moves_b;
+	t_stack	*i;
 
 	i = (*head_a);
 	moves_a = calc_best_move_a(&i, head_a);
 	moves_b = calc_best_move_b(&i, head_b);
 	while (i)
 	{
-		if (ft_abs(calc_best_move_a(&i, head_a)) + ft_abs(calc_best_move_b(&i, head_b)) < ft_abs(moves_a) + ft_abs(moves_b))
+		if (ft_abs(calc_best_move_a(&i, head_a)) + \
+		ft_abs(calc_best_move_b(&i, head_b)) < ft_abs(moves_a) + \
+		ft_abs(moves_b))
 		{
 			moves_a = calc_best_move_a(&i, head_a);
 			moves_b = calc_best_move_b(&i, head_b);
@@ -64,39 +70,41 @@ void    push_node(stack **head_a, stack **head_b)
 	cases_push_node(head_a, head_b, &moves_a, &moves_b);
 }
 
-void    reorder_stack_b(stack **head_b)
+void	reorder_stack_b(t_stack **head_b)
 {
-    stack   *i;
-    int     count;
+	t_stack	*i;
+	int		count;
 
-    count = 0; 
-    i = (*head_b);
-    while (i && i->chunk != 1)
-    {
-        i = i->next;
-        count++;
-    }
-    if (count < ft_stacksize(*head_b) / 2)
-        while (count + 3 > 0)
-        {
-            ft_rotate(head_b, RB);
-            count--;
-        }
-    else
-    {
-        count = (ft_stacksize((*head_b)) - count - 3);
-        while (count > 0)
-        {
-            ft_reverse_rotate(head_b, RRB);
-            count--;
-        }
-    }
+	count = 0;
+	i = (*head_b);
+	while (i && i->chunk != 1)
+	{
+		i = i->next;
+		count++;
+	}
+	if (count < ft_stacksize(*head_b) / 2)
+	{
+		while (count + 3 > 0)
+		{
+			ft_rotate(head_b, RB);
+			count--;
+		}
+	}
+	else
+	{
+		count = (ft_stacksize((*head_b)) - count - 3);
+		while (count > 0)
+		{
+			ft_reverse_rotate(head_b, RRB);
+			count--;
+		}
+	}
 }
 
-void    send_chunks_back(stack **head_a, stack **head_b)
+void	send_chunks_back(t_stack **head_a, t_stack **head_b)
 {
-	int     count;
-	stack   *i;
+	int		count;
+	t_stack	*i;
 
 	i = (*head_b);
 	count = 0;
@@ -113,7 +121,7 @@ void    send_chunks_back(stack **head_a, stack **head_b)
 		ft_push(head_b, head_a, PA);
 }
 
-void    main_algorithm(stack **head_a, stack **head_b)
+void	main_algorithm(t_stack **head_a, t_stack **head_b)
 {
 	if (!(*head_b))
 		ft_push(head_a, head_b, PB);
