@@ -6,11 +6,11 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:55 by jdufour           #+#    #+#             */
-/*   Updated: 2023/09/24 19:07:31 by jdufour          ###   ########.fr       */
+/*   Updated: 2024/02/04 23:36:20 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	case_321(t_stack **head_a, t_stack **head_b)
 {

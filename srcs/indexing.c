@@ -6,11 +6,11 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:58:31 by jdufour           #+#    #+#             */
-/*   Updated: 2023/09/24 19:02:17 by jdufour          ###   ########.fr       */
+/*   Updated: 2024/02/04 23:36:05 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	set_chunk(t_stack **i, int k)
 {

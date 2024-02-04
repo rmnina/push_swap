@@ -6,11 +6,11 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:50:45 by jdufour           #+#    #+#             */
-/*   Updated: 2023/09/24 19:00:57 by jdufour          ###   ########.fr       */
+/*   Updated: 2024/02/04 23:36:03 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	ft_error(void)
 {

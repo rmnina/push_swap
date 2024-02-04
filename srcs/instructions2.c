@@ -1,43 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   instructions2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/28 21:18:10 by jdufour           #+#    #+#             */
-/*   Updated: 2023/09/24 19:23:17 by jdufour          ###   ########.fr       */
+/*   Created: 2023/07/28 21:19:18 by jdufour           #+#    #+#             */
+/*   Updated: 2024/02/04 23:36:18 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
-void	ft_stackclear(t_stack **lst)
+void	ft_rotate_both(t_stack **head_a, t_stack **head_b, int move)
 {
-	t_stack	*pos;
-
-	pos = *lst;
-	if (!lst)
-		return ;
-	while (pos)
-	{
-		pos = (*lst)->next;
-		ft_stackdelone(*lst);
-		*lst = pos;
-	}
-	*lst = NULL;
+	ft_rotate(head_a, 0);
+	ft_rotate(head_b, 0);
+	write_move(move);
 }
 
-int	ft_abs(int n)
+void	ft_reverse_rotate_both(t_stack **head_a, t_stack **head_b, int move)
 {
-	if (n < 0)
-		n *= -1;
-	return (n);
-}
-
-int	first_half(int moves)
-{
-	if (moves >= 0)
-		return (1);
-	return (0);
+	ft_reverse_rotate(head_a, 0);
+	ft_reverse_rotate(head_b, 0);
+	write_move(move);
 }

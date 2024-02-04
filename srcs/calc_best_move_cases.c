@@ -6,11 +6,11 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 21:39:32 by jdufour           #+#    #+#             */
-/*   Updated: 2023/09/24 19:51:37 by jdufour          ###   ########.fr       */
+/*   Updated: 2024/02/04 23:35:24 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	first_half_a_and_b(t_stack **head_a, t_stack **head_b, \
 int *moves_a, int *moves_b)

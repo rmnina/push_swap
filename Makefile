@@ -6,24 +6,24 @@
 #    By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/31 12:01:53 by jdufour           #+#    #+#              #
-#    Updated: 2023/08/11 02:02:14 by jdufour          ###   ########.fr        #
+#    Updated: 2024/02/04 23:37:07 by jdufour          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRCS = error_check.c\
-	indexing.c\
-	instructions.c\
-	instructions2.c\
-	main_algo_cases.c\
-	main_algorithm.c\
-	push_swap.c\
-	small_algorithms.c\
-	utils.c\
-	utils2.c\
-	calc_best_moves.c\
-	calc_best_move_cases.c\
+SRCS = srcs/error_check.c\
+	srcs/indexing.c\
+	srcs/instructions.c\
+	srcs/instructions2.c\
+	srcs/main_algo_cases.c\
+	srcs/main_algorithm.c\
+	srcs/main.c\
+	srcs/small_algorithms.c\
+	srcs/utils.c\
+	srcs/utils2.c\
+	srcs/calc_best_moves.c\
+	srcs/calc_best_move_cases.c\
 
 OBJS = ${SRCS:.c=.o}
 

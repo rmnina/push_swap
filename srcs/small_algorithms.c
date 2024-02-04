@@ -6,11 +6,11 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:56:47 by jdufour           #+#    #+#             */
-/*   Updated: 2023/09/24 19:19:42 by jdufour          ###   ########.fr       */
+/*   Updated: 2024/02/04 23:36:43 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	three_values_algo(t_stack **head_a)
 {

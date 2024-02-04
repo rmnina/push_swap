@@ -6,11 +6,11 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:45:51 by jdufour           #+#    #+#             */
-/*   Updated: 2023/09/24 19:39:05 by jdufour          ###   ########.fr       */
+/*   Updated: 2024/02/04 23:36:01 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 int	good_sup_chunk_check(t_stack **head_b, t_stack **i)
 {

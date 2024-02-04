@@ -6,7 +6,7 @@
 /*   By: jdufour <jdufour@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 22:32:37 by jdufour           #+#    #+#             */
-/*   Updated: 2023/09/24 19:39:12 by jdufour          ###   ########.fr       */
+/*   Updated: 2024/02/04 23:37:49 by jdufour          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <string.h>
 # include <limits.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 //MOVES
 
