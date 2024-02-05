@@ -64,3 +64,4 @@ make && make clean
 # to try with the school tester :
 ARG="[values to sort]"; ./push_swap $ARG | ./checker_linux $ARG
 ```
+*Note that the push_swap will **NOT** return a sorted list, only the instructions used to sort it. You can pass it through the checker, which will return "OK" if the list is indeed sorted.*
