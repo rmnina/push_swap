@@ -24,6 +24,7 @@ Here's the problem to be solved:
     - For 500 values: **5500 moves**.
     
     All the moves made by the algorithm must therefore be printed out.
+- The values must end up sorted on stack A.
     
 
 So basically, we have someting like this :
