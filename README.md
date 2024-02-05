@@ -20,7 +20,7 @@ Here's the problem to be solved:
 - The number of moves is **counted**. So, to get all the points on the project, the algorithm must not exceed :
     - For 3 values: **3 moves** ;
     - For 5 values : **12 moves** ;
-    - For 100 values : **700 strokes** ;
+    - For 100 values : **700 moves** ;
     - For 500 values: **5500 moves**.
     
     All the moves made by the algorithm must therefore be printed out.
@@ -36,7 +36,7 @@ As well as encouraging us to find our own algo, push_swap introduces us to the n
 
 # Resolution
 
-*My algorithm isn't perfect yet. It passes with flying colors the 100 values with an average of 630 hits, but it lacks a small optimization on the 500-value sort, which sorts in an average of 5700 hits. I PROMISE to add this opti one of these days. That said, I think it works pretty well.*
+*My algorithm isn't perfect yet. It passes with flying colors the 100 values with an average of 630ish moves, but it lacks a small optimization on the 500-value sort, which sorts in an average of 5700ish moves. I PROMISE to add this opti one of these days. That said, I think it works pretty well.*
 
 To comply with the project's instructions, we had to implement a small algo specifically for lists of 3 values, to be able to sort them in 3 moves max. This gives us an **algorithmic complexity of O^n in the worst case (linear complexity)**, which is WILD, clearly the best we can do. So I've decided to take this little algo as a basis, and **divide my values into chunks of 3**. These chunks will be determined by the space that the values must have once sorted. For example, if my list to be sorted is :
 
@@ -51,3 +51,16 @@ The next step was to send the values **already ordered by chunks** to the B stac
 Once stack A is empty, the values are placed in stack B, in the reverse order of their chunk (since the top of B will go into the bottom of A). However, they're not quite sorted yet, so how to send it all back properly... Wait... We've got chunks of 3 values... **Didn't we have a super-optimized little algo to sort the values 3 by 3??** 🙂
 
 Of course, we had to add the cost of pushing from B to A (which we couldn't really have done without anyway), but from the moment everything is in B, **the algo has finished most of its computational work and only has to apply its little algorithm to the groups of 3**. And it's sorted! 🙂
+
+If you’d like to run my push_swap :
+
+```markdown
+git clone https://github.com/rmnina/push_swap.git
+cd push_swap
+make && make clean
+./push_swap [values to sort]
+# to count the number of moves :
+./push_swap [values to sort] | wc -l
+# to try with the school tester :
+ARG="[values to sort]"; ./push_swap $ARG | ./checker_linux $ARG
+```
